@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block up %}
+
+
+<!doctype html>
+<html class="no-js " lang="en">
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:52:22 GMT -->
+<head>
+{% load static %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>:: Oreo University Admin ::</title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<link href="{% static 'assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+<!-- Custom Css -->
+<link href="{% static 'assets/plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+<link href="{% static 'assets/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+
+								<script>
+function myFunction() {
+    var data = {{ fee_id }};
+    var total = 0;
+    for (var i = 0; i<data.length; i++)
+        {
+            p = parseInt(document.getElementById("fees"+data[i]).value);
+            if(!p)
+            {
+            p = 0;
+            }
+            total = total + p;
+        }
+    document.getElementById("txtresult").value = total;
+}
+</script>
+
+
+</head>
+{% endblock %}
+
+{% block down %}
+
+<!-- Main Content -->
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Add Fee Packege</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid"  >
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12" align = "center">
+
+                <div class="card"align = "center">
+                    <div class="body" id = "foo">
+                                 <form class="form" method="post" action="">
+                                   {% csrf_token %}
+                                  <div class="row clearfix">
+                                <div class="col-lg-6 col-md-12">
+
+								<label>Course</label>
+
+                               <select class="form-control show-tick" name = 'course' required = 'required'>
+                                    <option value="">-- Select Course --</option>
+									{% for cor in all_course %}
+                                    <option value="{{ cor.id }}">{{ cor.name }}/{{ cor.medium }}</option>
+                                    {% endfor %}
+                                </select>
+                                  <br><br>
+                                </div>
+
+                                   {% for fee in all_feetype %}
+
+                                <div class="col-lg-3 col-md-12">
+
+                                    <div class="form-group">
+
+											 <input type="checkbox" name = "fee" value = "{{ fee.name }}" >
+
+											<b>{{ fee.name }}</b>
+
+
+											 <input class="form-control" name = "{{ fee.name }}"  value = "0"
+											 id = "fees{{ fee.id }}" type="text"  readOnly onkeyup="myFunction();">
+
+                                </div>
+								</div>
+								<br><br>
+								<br><br>
+
+                                {% endfor %}
+                                      <div class="col-lg-12 col-md-12">
+                                          <label>Total Packege</label>
+                                       <div class="form-group">
+                                            <input type="text" id = "txtresult"  class="form-control" name = 'total'
+                                            onclick = "check()" >
+                                        </div>
+
+                                      </div>
+
+                                       <div class="col-lg-12 col-md-12">
+                                          <label>Discount For Single Student</label>
+                                       <div class="form-group">
+                                            <input type="text"  class="form-control" name = 'single_discount'
+                                             >
+                                        </div>
+
+                                      </div>
+
+
+                                      <div class="col-md-12">
+                                        <center>
+                                            <input class="btn btn-primary btn-round " type = "submit" value="Make Fee Packege Discount">
+                                        </center>
+                                      </div>
+                              </div>
+                         </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<script>
+function check() {
+
+
+    var f = parseInt(document.getElementById("Text2").value);
+
+
+    alert(sum);
+}
+</script>
+<script>
+    function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes').style.visibility = 'hidden';
+
+    if (document.getElementById('yesinstall').checked) {
+        document.getElementById('ifinstall').style.visibility = 'visible';
+    }
+    else document.getElementById('ifinstall').style.visibility = 'hidden';
+
+    if (document.getElementById('yesmonth_install').checked) {
+        document.getElementById('ifmonth_install').style.visibility = 'visible';
+    }
+    else document.getElementById('ifmonth_install').style.visibility = 'hidden';
+
+}
+ window.onload = yesnoCheck;
+</script>
+<script>
+ function add_number() {
+           
+            var first_number = parseInt(document.getElementById("Text2").value);
+            var second_number = parseInt(document.getElementById("Text1").value);
+			
+			
+            var result = first_number - second_number  ;
+
+            document.getElementById("txtresult").value = result;
+        }
+</script>
+
+<script>
+var table = document.getElementById("foo");
+var tbody = table.getElementsByTagName("div")[0];
+tbody.onclick = function (e) { //would be better if it added listener in a different manner
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+    if (target && target.type === "checkbox") {
+        var tr = target.parentNode.parentNode;
+        var elems = tr.getElementsByTagName("input"); //This does not get select and textarea!
+        var isChecked = target.checked;
+        for (var i = 1; i < elems.length; i++) { //start at 1 to skip checkbox
+            elems[i].readOnly = !isChecked;
+            elems[i].value = 0;
+            myFunction();
+
+
+        }
+    }
+}
+</script>
+<script>
+    document.getElementById('yourBox').onchange = function() {
+    document.getElementById('yourText').disabled = !this.checked;
+};
+document.getElementById('yourBox1').onchange = function() {
+    document.getElementById('yourText1').disabled = !this.checked;
+};
+</script>
+<!-- Jquery Core Js -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{% static 'assets/plugins/dropzone/dropzone.js' %}"></script> <!-- Dropzone Plugin Js -->
+<script src="{% static 'assets/plugins/autosize/autosize.js' %}"></script> <!-- Autosize Plugin Js -->
+<script src="{% static 'assets/plugins/momentjs/moment.js' %}"></script> <!-- Moment Plugin Js -->
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/js/pages/forms/basic-form-elements.js' %}"></script>
+<script src="{% static 'assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+{% endblock %}
+</body>
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:53:19 GMT -->
+</html>

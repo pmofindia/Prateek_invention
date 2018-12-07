@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+   {% block body %}
+         <!-- Slideshow 4 -->
+         <div class="slider text-center">
+            <div class="callbacks_container">
+               <ul class="rslides" id="slider4">
+                  <li>
+                     <div class="slider-img " style = "background-image:url({% static 'images/2.png' %})" >
+                        <div class="container">
+                           <div class="slider-info ">
+                              <h5><i>
+
+भारत की सब्से तेज़ पैन कार्ड सेवा
+                              </i></h5>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+              
+                  
+               </ul>
+            </div>
+            <!-- This is here just to demonstrate the callbacks -->
+            <!-- <ul class="events">
+               <li>Example 4 callback events</li>
+               </ul>-->
+            <div class="clearfix"></div>
+         </div>
+      </div>
+      <!-- //banner -->
+      <!-- about -->
+      <section class="service py-lg-4 py-md-3 py-sm-3 py-3">
+         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Services</h3>
+            <div class="row text-center">
+               <div class="col-lg-4 col-md-6 abut-gride">
+                  <span class="fas fa-address-card"></span>
+                  <h5>Pan Card</h5>
+                  <p class="mt-3"> We provide 3 Day Service, Just Apply and get your PAN
+                     Card in 3 Days at your Door.
+                  </p>
+               </div>
+               <div class="col-lg-4 col-md-6 abut-gride">
+                  <span class="fas fa-address-card"></span>  
+                  <h5>Aadhaar Card</h5>
+                  <p class="mt-3"> We provide 3 Day Service, Just Apply and get your Aadhar
+                     Card in 3 Days at your Door.
+                  </p>
+               </div>
+               <div class="col-lg-4 col-md-6 abut-gride">
+                  <span class="fas fa-address-card"></span>
+                  <h5> Voter Id Card</h5>
+                  <p class="mt-3"> We provide 3 Day Service, Just Apply and get your Voter-ID
+                     Card in 3 Days at your Door.
+                  </p>
+               </div>
+             
+              
+              
+            </div>
+         </div>
+      </section>
+      <!--//service -->	 
+      <!--subscribe-address-->
+     {% endblock %}

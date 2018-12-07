@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block up %}
+
+
+<!doctype html>
+<html class="no-js " lang="en">
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:52:22 GMT -->
+<head>
+{% load static %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>:: Oreo University Admin ::</title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+</head>
+{% endblock %}
+
+{% block down %}
+
+<!-- Main Content -->
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>All Courses
+                
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+               
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="{% url 'add' 'Course' %}"><i class="zmdi zmdi-plus-square"></i>&nbsp;&nbsp;Add Courses</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+         <div class="row clearfix">
+            {% for course in all_courses %}
+         
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="body">
+                        <img src="{% static 'assets/images/image3.jpg' %}" alt=""  class="img-fluid rounded m-b-20">
+                        <h6>{{ course.name }} Course</h6>
+                        <div class="table-responsive">
+                            <table class="table table-hover m-t-20">
+                                <tbody>
+                                    <tr>
+                                        <td>Medium</td>
+                                        <td>{{course.medium}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created Date</td>
+                                        <td><strong class="col-blush">{{ course.created_date }}</strong></td>
+                                    </tr>
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{% url 'delete' course.id 'Course' %}" class="btn btn-block btn-raised btn-default btn-simple btn-round waves-effect" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+           {% endfor %}
+                    
+            <div class="col-sm-12 text-center">
+                <a href="javascript:void(0);" class="btn btn-raised waves-effect btn-round btn-primary" role="button">Load more</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Jquery Core Js -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+{% endblock %}
+</body>
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:53:19 GMT -->
+</html>

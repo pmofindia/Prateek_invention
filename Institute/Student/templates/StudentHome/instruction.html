@@ -1,0 +1,56 @@
+{% extends 'StudentHome/base.html' %}
+{% block body %}
+{% load static %}
+
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-8 col-sm-12">
+                        <h2>Read Test Instruction</h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                        <ul class="breadcrumb justify-content-end">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>                            
+                            <li class="breadcrumb-item active">Read Test Instruction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+<script type="text/javascript">
+    function Decelatrion()
+    {
+        o = document.getElementById('instruction');
+        if (o.checked)
+        {
+            document.getElementById("read").disabled=false;
+        }
+        else
+        {
+         document.getElementById("read").disabled=true;   
+        }
+    }
+</script>
+
+ <div class="row clearfix" style="position: fixed; bottom: 0px; width: 82%;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="body">
+                            <p><b>Declaration</b></p>
+                            <p style="font-size: 15px;"><input type="checkbox" id = "instruction" onclick="Decelatrion();" >&nbsp; I have read all the instructions carefully and have understood them. I agree not to cheat or use unfair means in this examination. I understand that using unfair means of any sort for my own or some else’s advantage will lead to my immediate disqualification. The decision of TechSim+ will be final in these matters and cannot be appealed.</span></p>
+                           <center><a href="{% url 'StudentPanel:live' %}"><input type="button" value="I have read the instructions" class="btn btn-default btn-block max-width-100 bg-gray-6 pad-h0 pad-v8" style="border:1px solid black; max-width: 200px;" disabled id = "read"></a></center>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+{% endblock %}

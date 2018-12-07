@@ -1,0 +1,25 @@
+from django.contrib import admin
+
+from .models import *
+
+admin.site.register(Master_fee_type_data)
+admin.site.register(Master_course_data)
+admin.site.register(Master_medium_data)
+admin.site.register(Master_subject_data)
+admin.site.register(Master_catbook_data)
+admin.site.register(Master_subcatbook_data)
+admin.site.register(Master_book_data)
+admin.site.register(Master_batch_data)
+admin.site.register(Master_holiday_data)
+admin.site.register(Master_designation_data)
+admin.site.register(Master_area_data)
+admin.site.register(Master_employee_data)
+admin.site.register(Master_paymentmode_data)
+admin.site.register(Master_bus_data)
+admin.site.register(Master_driver_data)
+admin.site.register(Master_route_data)
+admin.site.register(Master_asign_bus_data)
+admin.site.register(Master_fee_packege_data)
+admin.site.register(Register_Student)
+admin.site.register(Library_Issue_Book)
+admin.site.register(LateFine)

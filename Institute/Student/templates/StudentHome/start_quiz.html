@@ -1,0 +1,450 @@
+{% extends 'StudentHome/base.html' %}
+{% block body %}
+{% load static %}
+
+
+
+    <div id="main-content" class="taskboard">
+        <div class="container-fluid">
+           
+
+<style>
+.dot {
+    height: 40px;
+    width: 40px;
+    background-color: #092C35;
+    border-radius: 50%;
+    display: inline-block;
+        border-width: 5px;
+        color: white;
+    border: 1px solid #51647a;
+
+}
+
+.cdot {
+    height: 30px;
+    width: 30px;
+    background-color: #f96332;
+    border-radius: 50%;
+    display: inline-block;
+        border-width: 5px;
+        color: white;
+    border: 1px solid #f96332;
+
+}
+
+
+</style>
+
+<style type="text/css">
+        
+
+        .pn-ProductNav_Wrapper {
+          position: relative;
+          padding: 0 11px;
+          box-sizing: border-box;
+        }
+
+        .pn-ProductNav {
+          /* Make this scrollable when needed */
+          overflow-x: auto;
+          /* We don't want vertical scrolling */
+          overflow-y: hidden;
+          /* For WebKit implementations, provide inertia scrolling */
+          -webkit-overflow-scrolling: touch;
+          /* We don't want internal inline elements to wrap */
+          white-space: nowrap;
+          /* If JS present, let's hide the default scrollbar */
+          /* positioning context for advancers */
+          position: relative;
+          font-size: 0;
+        }
+        .js .pn-ProductNav {
+          /* Make an auto-hiding scroller for the 3 people using a IE */
+          -ms-overflow-style: -ms-autohiding-scrollbar;
+          /* Remove the default scrollbar for WebKit implementations */
+        }
+        .js .pn-ProductNav::-webkit-scrollbar {
+          display: none;
+        }
+
+        .pn-ProductNav_Contents {
+          float: left;
+          -webkit-transition: -webkit-transform .2s ease-in-out;
+          transition: -webkit-transform .2s ease-in-out;
+          transition: transform .2s ease-in-out;
+          transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+          position: relative;
+        }
+
+        .pn-ProductNav_Contents-no-transition {
+          -webkit-transition: none;
+          transition: none;
+        }
+
+        .pn-ProductNav_Link {
+          text-decoration: none;
+          color: #888;
+          font-size: 1.2rem;
+          font-family: -apple-system, sans-serif;
+          display: -webkit-inline-box;
+          display: -ms-inline-flexbox;
+          display: inline-flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          min-height: 44px;
+          border: 1px solid transparent;
+          padding: 0 11px;
+        }
+        .pn-ProductNav_Link + .pn-ProductNav_Link {
+          border-left-color: #eee;
+        }
+        .pn-ProductNav_Link[aria-selected="true"] {
+          color: #111;
+        }
+
+        .pn-Advancer {
+          /* Reset the button */
+          -webkit-appearance: none;
+             -moz-appearance: none;
+                  appearance: none;
+          background: transparent;
+          padding: 0;
+          border: 0;
+          /* Now style it as needed */
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          /* Set the buttons invisible by default */
+          opacity: 0;
+          -webkit-transition: opacity .3s;
+          transition: opacity .3s;
+        }
+        .pn-Advancer:focus {
+          outline: 0;
+        }
+        .pn-Advancer:hover {
+          cursor: pointer;
+        }
+
+        .pn-Advancer_Left {
+          left: 0;
+        }
+        [data-overflowing="both"] ~ .pn-Advancer_Left, [data-overflowing="left"] ~ .pn-Advancer_Left {
+          opacity: 1;
+        }
+
+        .pn-Advancer_Right {
+          right: 0;
+        }
+        [data-overflowing="both"] ~ .pn-Advancer_Right, [data-overflowing="right"] ~ .pn-Advancer_Right {
+          opacity: 1;
+        }
+
+        .pn-Advancer_Icon {
+          width: 20px;
+          height: 44px;
+          fill: #bbb;
+        }
+
+        .pn-ProductNav_Indicator {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          height: 4px;
+          width: 100px;
+          background-color: white !important;
+          -webkit-transform-origin: 0 0;
+                  transform-origin: 0 0;
+          -webkit-transition: background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+          transition: background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+          transition: transform .2s ease-in-out, background-color .2s ease-in-out;
+          transition: transform .2s ease-in-out, background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+        }
+
+    </style>
+
+
+
+    <style type="text/css">
+    .leftborder {
+        position: absolute;
+    content: '';
+    left: 0;
+    top: 15px;
+    width: 3px;
+    height: 40%;
+    background: #ffce4b;
+    }
+
+        .wstatus {
+        position: absolute;
+    content: '';
+    right: 0;
+    top: 73%;
+    width: 90px;
+    height: 25%;
+    background: red;
+    }
+
+            .cstatus {
+        position: absolute;
+    content: '';
+    right: 0;
+    top: 73%;
+    width: 90px;
+    height: 25%;`
+    background: green;
+    }
+</style>
+                <div class="row clearfix" style="width: 100%;">
+            		<div class="col-lg-2 col-md-12"></div>
+                  <div class="col-lg-8 col-md-12">
+                    <div class="card progress_task">
+                        <div class="header">
+                            <ul class="header-dropdown">
+                            	 <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addcontact"><i class="icon-plus"></i></a></li>
+                                <li> <a href="javascript:void(0);" data-toggle="cardloading" data-loading-effect="pulse"><i class="icon-refresh"></i></a></li>
+                                <li><a href="javascript:void(0);" class="full-screen"><i class="icon-size-fullscreen"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="body taskboard">
+                            
+                        <div class="dd" data-plugin="nestable">
+                                <ol class="dd-list">
+                                    <li class="dd-item" data-id="1">
+                                        <div style="width: 100%;padding: 10px;border: 1px solid #efefef; margin: 0;">
+                                            <div class="leftborder"></div>
+                                            <h5>1/3 Question</h5>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                           
+                                        </div>
+                                    </li>
+                                    <br>
+                                    <li class="dd-item" data-id="1">
+                                        <div style="width: 100%;padding: 10px;border: 2px solid green; margin: 0;">
+                                            <div class="leftborder"></div>
+                                            <div class="cstatus"><center><p style="color: white;">Correct</p></center></div>
+                                            <span class="cdot" style="padding-top: 4px; font-size: 15px;">
+                                                <center>1</center>
+                                              </span>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                            
+                                        </div>
+                                    </li><br>
+                                    <li class="dd-item" data-id="1">
+                                        <div style="width: 100%;padding: 10px;border: 2px solid red; margin: 0;">
+                                            <div class="leftborder"></div>
+                                            <div class="wstatus"><center><p style="color: white;">Wrong</p></center></div>
+                                            
+                                           <span class="cdot" style="padding-top: 4px; font-size: 15px;">
+                                                <center>2</center>
+                                              </span>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                            
+                                        </div>
+                                    </li>
+                                
+                                    <br>
+                                    <li class="dd-item" data-id="1">
+                                        <div style="width: 100%;padding: 10px;border: 1px solid #efefef; margin: 0;">
+                                            <div class="leftborder"></div>
+                                            <span class="cdot" style="padding-top: 4px; font-size: 15px;">
+                                                <center>3</center>
+                                              </span>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        </div>
+                                    </li><br>
+                                    <li class="dd-item" data-id="1">
+                                        <div style="width: 100%;padding: 10px;border: 1px solid #efefef; margin: 0;">
+                                            <div class="leftborder"></div>
+                                           <span class="cdot" style="padding-top: 4px; font-size: 15px;">
+                                                <center>4</center>
+                                              </span>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        </div>
+                                    </li><br>
+                                    
+
+                                </ol>
+                            </div>
+
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+<center>
+    <div class="row clearfix fixed-bottom" style="align-self: center; width: 80%;">
+        <div class="col-lg-7 col-md-12"> 
+        </div>
+        <div class="col-lg-5 col-md-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);">
+                        <span aria-hidden="true">&laquo; &laquo;
+                        </span>Previous</a>
+                    </li>
+                    <li class="page-item">
+                            <a class="page-link" id = "link" href="#largeModal" data-toggle="modal" data-target="#largeModal">
+                        Submit Quiz</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);">Next<span aria-hidden="true">&raquo; &raquo;</span></a>
+                    </li>
+                </ul>
+            </nav>      
+        </div>
+    </div>
+</center>
+
+
+
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 700px !important;">
+        <div class="modal-content">
+            <center><div class="modal-header">
+               <center> <h4 class="title" id="largeModalLabel">Quiz Summary</h4>
+                <p>Your Answer have been saved successfull</p></center>
+            </div></center>
+            <div class="modal-body">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table m-b-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Section</th>
+                                            <th>No. of questions</th>
+                                            <th>Answered</th>
+                                            <th>Not Answered</th>
+                                            <th>Skiped</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><span>Daily Quiz</span></td>
+                                            <td><span class="text-info">70</span></td>
+                                            <td>10</td>
+                                            <td>20</td>
+                                            <td>40</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div> </div>
+            <div class="modal-footer">
+                <a href="{% url 'StudentPanel:quiz_summery' %}"><button type="button" class="btn btn-primary">Submit Quiz</button></a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>    
+</div>
+
+
+<!-- Add New Task -->
+<div class="modal fade" id="addcontact" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="title" id="defaultModalLabel">Add New Task</h6>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-12">
+                        <div class="form-group">                                    
+                            <input type="text" class="form-control" placeholder="Task no.">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">                                   
+                            <input type="text" class="form-control" placeholder="Job title">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">                                    
+                            <textarea class="form-control" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <select class="form-control show-tick m-b-10">
+                            <option>Select Team</option>
+                            <option>John Smith</option>
+                            <option>Hossein Shams</option>
+                            <option>Maryam Amiri</option>
+                            <option>Tim Hank</option>
+                            <option>Gary Camara</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label>Range</label>
+                        <div class="input-daterange input-group" data-provide="datepicker">
+                            <input type="text" class="form-control" name="start">
+                            <span class="input-group-addon"> to </span>
+                            <input type="text" class="form-control" name="end">
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+// Set the date we're counting down to
+var countDownDate = 0;
+var count = new Date().getTime();
+var h = 1000 * 60 * 60 * 0;
+var m = 1000 * 60 * 0;
+var s = 1000 * 7;
+countDownDate = count + h + m + s + 2000;
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = hours + ":" + minutes + ":" + seconds;
+    
+    // If the count down is over, write some text 
+    if (distance < 5000) {
+        clearInterval(x);
+        document.getElementById('link').click(); 
+    }
+}, 1000);
+</script>
+    {% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'Library/base.html' %}
+
+{% block up %}
+
+
+<html class="no-js " lang="en">
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:52:22 GMT -->
+<head>
+{% load static %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>:: Oreo University Admin ::</title>
+<!-- Favicon-->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<!-- Custom Css -->
+<link href="{% static 'assets/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+
+</head>
+{% endblock %}
+
+{% block down %}
+
+<!-- Main Content -->
+<section class="content">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Add Book</h2>
+            </div>
+          
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+			 <form class="form" method="post" action="">
+                <div class="card">
+                    <div class="body">
+                                  <div class="row clearfix">
+								 
+							    {% csrf_token %}
+                                <div class="col-lg-6 col-md-12">
+								
+							
+								<label>Course</label>
+                                    
+                                <select class="form-control show-tick" name = 'category' required='required' onchange="window.location=this.value" >
+                                    {% if cour == "ALL" %}
+                                    <option > -- Select Course --</option>
+                                    {% endif %}
+
+                                    {% for cs in courses %}
+                                    <option value="{% url 'LibraryPanel:Library_issue_book' book.id cs.id 'ALL' stu %}">{{ cs.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                  <br><br>
+                                </div>
+								
+                                <div class="col-lg-6 col-md-12">
+								<label>Batch</label>
+
+                                <select class="form-control show-tick" name = 'subcategory'
+                                        onchange="window.location=this.value" required='required'>
+									{% if bch == "ALL" and cour != "ALL" %}
+                                    <option > -- Select Batch --</option>
+                                    {% endif %}
+
+                                    {% for bch in batches %}
+									<option value ="{% url 'LibraryPanel:Library_issue_book' book.id cour bch.id stu %}">&nbsp;{{ bch.name }}</option>
+                                    {% endfor %}
+                                </select>
+								<br><br>
+                                </div>
+                                      <div class="col-lg-6 col-md-12">
+								<label>Student</label>
+
+                                <select class="form-control show-tick" name = 'subcategory'
+                                        onchange="window.location=this.value" required='required'>
+                                    {% if stu == "ALL" and bch != "ALL" %}
+                                    <option > -- Select Student --</option>
+                                    {% endif %}
+									{% for student in students %}
+									<option value ="{% url 'LibraryPanel:Library_issue_book' book.id cour bch student.id %}">&nbsp;{{ student.name }}</option>
+                                    {% endfor %}
+                                </select>
+								<br><br>
+                                </div>
+                                <div class="col-lg-4 col-md-12">
+								<label>Issue Date</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" name = 'issue' placeholder="Book Title"required='required'>
+                                    </div>
+                                </div>
+
+								 <div class="col-lg-4 col-md-12">
+								<label>Return Date</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" name = 'return' placeholder="Author Name"required='required'>
+                                    </div>
+                                </div>
+                               
+                                <div class="col-md-12">
+                                <center><input class="btn btn-primary btn-round btn-lg" type = "submit" value="Add Book"></center>
+                                </div>
+								
+                            </div>
+                      
+                    </div>
+                </div>
+				</form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Jquery Core Js --> 
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js --> 
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+{% endblock %}
+</body>
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:53:19 GMT -->
+</html>

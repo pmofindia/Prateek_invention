@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block up %}
+
+
+<!doctype html>
+<html class="no-js " lang="en">
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:52:22 GMT -->
+<head>
+{% load static %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<title>:: Oreo University Admin ::</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Favicon-->
+<link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+</head>
+{% endblock %}
+
+{% block down %}
+<section class="content profile-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>All Driver List
+                
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+               
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="{% url 'master_add_driver' 'Add_driver' %}"><i class="zmdi zmdi-plus-square"></i> Add Driver</a></li>                    
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card parents-list">
+                    <div class="header">
+                        <h2><strong>Driver</strong> List</h2>
+                        
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-hover m-b-0">
+                                <thead>
+                                    <tr>
+                                        <th>S.NO.</th>									
+                                        <th>Driver Photo</th>
+                                        <th>Name</th>
+                                        <th>Licence Number</th>
+                                        <th>Mobile number</th>
+                                        <th class="hidden-md-down">Address</th>
+										<th>Edit</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+								{% for d in all_driver %}
+                                    <tr>
+									    <td>{{ forloop.counter }}</td>
+                                        <td><span class="list-icon"><img class="rounded" src="{{ d.image.url }}" alt=""></span></td>
+                                        <td><span class="list-name">{{ d.name }}</span></td>
+										<td><span class="list-name">{{ d.license_number }}</span></td>
+                                        <td>{{ d.mobile }}</td>
+                                        <td class="hidden-md-down">{{ d.address }}</td>
+                                        <td><a href="{% url 'master_add_driver' d.id  %}"><span class="badge badge-primary">Edit</span></a></td>
+										<td><a href="{% url 'delete' d.id 'Driver' %}"><span class="badge badge-primary">Remove</span></a></td>
+                                    </tr>
+                                  {% endfor %} 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Jquery Core Js --> 
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script> <!-- Bootstrap JS and jQuery v3.2.1 -->
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script> <!-- slimscroll, waves Scripts Plugin Js -->  
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+{% endblock %}
+
+</body>
+
+<!-- Mirrored from thememakker.com/templates/oreo/university/html/parents.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Sep 2018 02:52:59 GMT -->
+</html>
